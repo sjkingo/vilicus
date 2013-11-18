@@ -99,6 +99,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'debug_toolbar',
     'south',
+    'manager',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
