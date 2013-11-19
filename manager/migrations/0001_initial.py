@@ -12,6 +12,7 @@ class Migration(SchemaMigration):
         db.create_table(u'manager_agent', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('hostname', self.gf('django.db.models.fields.CharField')(max_length=100)),
+            ('check_interval_ms', self.gf('django.db.models.fields.IntegerField')()),
             ('last_checkin', self.gf('django.db.models.fields.DateTimeField')(null=True, blank=True)),
         ))
         db.send_create_signal(u'manager', ['Agent'])
@@ -25,6 +26,7 @@ class Migration(SchemaMigration):
     models = {
         u'manager.agent': {
             'Meta': {'object_name': 'Agent'},
+            'check_interval_ms': ('django.db.models.fields.IntegerField', [], {}),
             'hostname': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'last_checkin': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'blank': 'True'})
