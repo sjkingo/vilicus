@@ -99,6 +99,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'debug_toolbar',
     'south',
+    'tastypie',
     'manager',
 )
 
@@ -139,6 +140,9 @@ DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS': False,
 }
 
+# Tastypie settings.
+TASTYPIE_DEFAULT_FORMATS = ['json']
+
 # Try and import the local_settings
 try:
     from local_settings import *
@@ -146,4 +150,5 @@ except ImportError:
     pass
 
 TEMPLATE_DEBUG = DEBUG
+TASTYPIE_FULL_DEBUG = DEBUG
 MANAGERS = ADMINS
