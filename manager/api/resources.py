@@ -11,6 +11,6 @@ class AgentResource(ModelResource):
             'id': ALL,
         }
 
-        allowed_methods = ['get', 'post', 'put']
+        allowed_methods = ['get', 'put']
         authorization = Authorization()
         serializer = Serializer()
