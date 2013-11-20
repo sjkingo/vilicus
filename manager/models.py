@@ -41,6 +41,13 @@ class Service(models.Model):
     def __unicode__(self):
         return '{self.service_name} on {self.agent}'.format(self=self)
 
+    @property
+    def latest_log(self):
+        try:
+            return self.log.all()[0]
+        except IndexError:
+            return None
+
 class ServiceLog(models.Model):
     service = models.ForeignKey('Service', related_name='log')
     timestamp = models.DateTimeField()
@@ -56,3 +63,7 @@ class ServiceLog(models.Model):
     def __unicode__(self):
         return '{service} at {timestamp}'.format(service=str(self.service), 
                 timestamp=self.timestamp)
+
+    @property
+    def status_pass(self):
+        return self.actual_status == self.service.expected_status

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block main %}
+
+<h1>Dashboard</h1>
+
+{% for agent in agents %}
+<h2>{{ agent }}</h2>
+<ul>
+    {% for service in agent.services.all %}
+    <li>{{ service.service_name }}: {{ service.latest_log.status_pass }} ({{ service.latest_log.timestamp }})</li>
+    {% endfor %}
+</ul>
+{% endfor %}
+
+{% endblock %}
