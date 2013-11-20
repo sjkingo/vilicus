@@ -10,6 +10,7 @@ class Agent(models.Model):
     class Meta:
         verbose_name = 'Agent'
         verbose_name_plural = verbose_name + 's'
+        ordering = ('hostname',)
 
     def __unicode__(self):
         return self.hostname
@@ -35,6 +36,7 @@ class Service(models.Model):
     class Meta:
         verbose_name = 'Service'
         verbose_name_plural = verbose_name + 's'
+        ordering = ('agent', 'service_name')
 
     def __unicode__(self):
         return '{self.service_name} on {self.agent}'.format(self=self)
@@ -49,6 +51,7 @@ class ServiceLog(models.Model):
     class Meta:
         verbose_name = 'Service log'
         verbose_name_plural = verbose_name + 's'
+        ordering = ('service', '-timestamp')
 
     def __unicode__(self):
         return '{service} at {timestamp}'.format(service=str(self.service), 
