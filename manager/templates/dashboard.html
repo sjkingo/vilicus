@@ -9,7 +9,7 @@
 {% for agent in agents %}
 <h2>{{ agent }}</h2>
 <ul>
-    {% for service in agent.services.all %}
+    {% for service in agent.windows_services.all %}
     <li>{{ service.service_name }}: {{ service.latest_log.status_pass }} ({{ service.latest_log.timestamp }})</li>
     {% endfor %}
 </ul>

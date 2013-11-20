@@ -7,7 +7,7 @@ class AgentAdmin(admin.ModelAdmin):
 
 admin.site.register(Agent, AgentAdmin)
 
-admin.site.register(Service)
+admin.site.register(WindowsService)
 
 class ServiceLogAdmin(admin.ModelAdmin):
     readonly_fields = ('service', 'timestamp', 'actual_status', 'action_taken')

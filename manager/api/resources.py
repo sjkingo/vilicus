@@ -21,11 +21,11 @@ class AgentResource(ModelResource):
 
 v1_api.register(AgentResource())
 
-class ServiceResource(ModelResource):
+class WindowsServiceResource(ModelResource):
     agent = fields.ForeignKey(AgentResource, 'agent')
 
     class Meta:
-        queryset = Service.objects.all()
+        queryset = WindowsService.objects.all()
         filtering = {
             'agent': ALL_WITH_RELATIONS,
         }
@@ -34,10 +34,10 @@ class ServiceResource(ModelResource):
         authorization = Authorization()
         serializer = Serializer()
 
-v1_api.register(ServiceResource())
+v1_api.register(WindowsServiceResource())
 
 class ServiceLogResource(ModelResource):
-    service = fields.ForeignKey(ServiceResource, 'service')
+    service = fields.ForeignKey(WindowsServiceResource, 'service')
 
     class Meta:
         queryset = ServiceLog.objects.all()

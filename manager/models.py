@@ -27,14 +27,14 @@ SERVICE_STATUS_STATES = (
     ('NOT_INSTALLED', 'Not installed'),
 )
 
-class Service(models.Model):
-    agent = models.ForeignKey('Agent', related_name='services')
+class WindowsService(models.Model):
+    agent = models.ForeignKey('Agent', related_name='windows_services')
     service_name = models.CharField(max_length=100)
     expected_status = models.CharField(max_length=16, 
             choices=SERVICE_STATUS_STATES, default='RUNNING')
 
     class Meta:
-        verbose_name = 'Service'
+        verbose_name = 'Windows Service'
         verbose_name_plural = verbose_name + 's'
         ordering = ('agent', 'service_name')
 
@@ -49,7 +49,7 @@ class Service(models.Model):
             return None
 
 class ServiceLog(models.Model):
-    service = models.ForeignKey('Service', related_name='log')
+    service = models.ForeignKey('WindowsService', related_name='log')
     timestamp = models.DateTimeField()
     actual_status = models.CharField(max_length=16)
     action_taken = models.CharField(max_length=50)
