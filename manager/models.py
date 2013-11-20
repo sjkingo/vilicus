@@ -4,6 +4,8 @@ class Agent(models.Model):
     hostname = models.CharField(max_length=100)
     check_interval_ms = models.IntegerField(verbose_name='Check interval (ms)')
     last_checkin = models.DateTimeField(blank=True, null=True)
+    version = models.CharField(max_length=5, blank=True, null=True)
+    guid = models.CharField(max_length=40, blank=True, null=True)
 
     class Meta:
         verbose_name = 'Agent'
