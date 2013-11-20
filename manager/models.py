@@ -23,6 +23,7 @@ SERVICE_STATUS_STATES = (
     ('PAUSE_PENDING', 'Pause pending'),
     ('PAUSED', 'Paused'),
     ('CONTINUE_PENDING', 'Continue pending'),
+    ('NOT_INSTALLED', 'Not installed'),
 )
 
 class Service(models.Model):
