@@ -37,3 +37,18 @@ class Service(models.Model):
 
     def __unicode__(self):
         return '{self.service_name} on {self.agent}'.format(self=self)
+
+class ServiceLog(models.Model):
+    service = models.ForeignKey('Service', related_name='log')
+    timestamp = models.DateTimeField()
+    actual_status = models.CharField(max_length=16)
+    action_taken = models.CharField(max_length=50)
+    comments = models.TextField(blank=True, null=True)
+
+    class Meta:
+        verbose_name = 'Service log'
+        verbose_name_plural = verbose_name + 's'
+
+    def __unicode__(self):
+        return '{service} at {timestamp}'.format(service=str(self.service), 
+                timestamp=self.timestamp)

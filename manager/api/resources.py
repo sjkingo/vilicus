@@ -35,3 +35,18 @@ class ServiceResource(ModelResource):
         serializer = Serializer()
 
 v1_api.register(ServiceResource())
+
+class ServiceLogResource(ModelResource):
+    service = fields.ForeignKey(ServiceResource, 'service')
+
+    class Meta:
+        queryset = ServiceLog.objects.all()
+        filtering = {
+            'service': ALL_WITH_RELATIONS,
+        }
+
+        allowed_methods = ['get', 'post']
+        authorization = Authorization()
+        serializer = Serializer()
+
+v1_api.register(ServiceLogResource())
