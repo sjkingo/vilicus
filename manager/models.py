@@ -48,7 +48,7 @@ class WindowsService(models.Model):
         except IndexError:
             return None
 
-class ServiceLog(models.Model):
+class WindowsServiceLog(models.Model):
     service = models.ForeignKey('WindowsService', related_name='log')
     timestamp = models.DateTimeField()
     actual_status = models.CharField(max_length=16)
@@ -56,7 +56,7 @@ class ServiceLog(models.Model):
     comments = models.TextField(blank=True, null=True)
 
     class Meta:
-        verbose_name = 'Service log'
+        verbose_name = 'Windows Service log'
         verbose_name_plural = verbose_name + 's'
         ordering = ('service', '-timestamp')
 

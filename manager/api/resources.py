@@ -36,11 +36,11 @@ class WindowsServiceResource(ModelResource):
 
 v1_api.register(WindowsServiceResource())
 
-class ServiceLogResource(ModelResource):
+class WindowsServiceLogResource(ModelResource):
     service = fields.ForeignKey(WindowsServiceResource, 'service')
 
     class Meta:
-        queryset = ServiceLog.objects.all()
+        queryset = WindowsServiceLog.objects.all()
         filtering = {
             'service': ALL_WITH_RELATIONS,
         }
@@ -49,4 +49,4 @@ class ServiceLogResource(ModelResource):
         authorization = Authorization()
         serializer = Serializer()
 
-v1_api.register(ServiceLogResource())
+v1_api.register(WindowsServiceLogResource())
