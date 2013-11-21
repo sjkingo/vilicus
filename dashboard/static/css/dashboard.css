@@ -1,0 +1,79 @@
+#dashboard {
+    max-width: 40em;
+    margin: 0 auto;
+}
+
+div.check {
+    margin: 0.25em 0;
+    margin-bottom: 2em;
+    overflow: auto;
+    border: 1px solid #E8E8E8;
+}
+
+div.summary {
+    clear: both;
+    overflow: auto;
+    cursor: pointer;
+}
+div.summary:hover {
+    background-color: #F8F8F8;
+}
+
+div.check-name {
+    float: left;
+    font-size: 1.3em;
+}
+div.check-status {
+    float: right;
+    width: 5em;
+    text-align: center;
+    font-size: 1.3em;
+}
+div.check-name,
+div.check-status {
+    padding: 0.7em 0.5em 0.7em 0.5em;
+}
+
+.good {
+    background-color: #03EBA6;
+}
+.bad {
+    background-color: #FF7575;
+    font-weight: bold;
+}
+
+div.detail {
+    padding: 0.5em;
+    border-top: 1px solid #E8E8E8;
+}
+div.closed {
+    display: none;
+}
+
+table.history {
+    width: 100%;
+}
+table.history td.center {
+    text-align: center;
+}
+table.history td.right {
+    text-align: right;
+}
+table.history tr.links td {
+    padding-top: 0.5em;
+}
+
+table.agent_title {
+    width: 100%;
+    margin: 2em 0 1em 0;
+}
+table.agent_title h2 {
+    font-size: 1.5em;
+    margin: 0;
+}
+table.agent_title td.byline {
+    text-align: right;
+}
+table.agent_title td {
+    vertical-align: baseline;
+}

@@ -27,6 +27,7 @@ SERVICE_STATUS_STATES = (
     ('NOT_INSTALLED', 'Not installed'),
     ('UNKNOWN', 'Unknown'),
 )
+SERVICE_STATUS_DICT = dict(SERVICE_STATUS_STATES)
 
 class WindowsService(models.Model):
     agent = models.ForeignKey('Agent', related_name='windows_services')
@@ -43,9 +44,13 @@ class WindowsService(models.Model):
         return '{self.service_name} on {self.agent}'.format(self=self)
 
     @property
+    def latest_log_entries(self):
+        return self.log.all()[:10]
+
+    @property
     def latest_log(self):
         try:
-            return self.log.all()[0]
+            return self.latest_log_entries[0]
         except IndexError:
             return None
 
@@ -69,3 +74,11 @@ class WindowsServiceLog(models.Model):
     @property
     def status_pass(self):
         return self.actual_status == self.expected_status
+
+    @property
+    def expected_status_h(self):
+        return SERVICE_STATUS_DICT[self.expected_status]
+
+    @property
+    def actual_status_h(self):
+        return SERVICE_STATUS_DICT[self.actual_status]

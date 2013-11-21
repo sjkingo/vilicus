@@ -1,18 +1,119 @@
 {% extends "base.html" %}
+{% load staticfiles humanize %}
 
 {% block title %}Dashboard{% endblock %}
+
+{% block extra_head %}
+<meta http-equiv="Refresh" content="60" />
+{% endblock %}
+
+{% block extra_css %}
+<link href="{% static "css/dashboard.css" %}" rel="stylesheet" />
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static "js/dashboard.js" %}"></script>
+{% endblock %}
 
 {% block main %}
 
 <h1>Dashboard</h1>
 
+<div id="dashboard">
+
 {% for agent in agents %}
-<h2>{{ agent }}</h2>
-<ul>
-    {% for service in agent.windows_services.all %}
-    <li>{{ service.service_name }}: {{ service.latest_log.status_pass }} ({{ service.latest_log.timestamp }})</li>
-    {% endfor %}
-</ul>
+
+<table class="agent_title">
+    <tr>
+        <td><h2>{{ agent }}</h2></td>
+        <td class="byline">
+            {% if agent.last_checkin %}
+            Last checkin {{ agent.last_checkin|naturaltime }}
+            {% else %}
+            Never checked in
+            {% endif %}
+        </td>
+    </tr>
+</table>
+
+{% comment %}
+<div class="title">
+    <span><h2>{{ agent }}</h2></span>
+    <span class="byline">{% spaceless %}
+    {% if agent.last_checkin %}
+    Last checkin {{ agent.last_checkin|naturaltime }}
+    {% else %}
+    Never checked in
+    {% endif %}
+    {% endspaceless %}</span>
+</div>
+{% endcomment %}
+
+{% if agent.windows_services.count == 0 %}
+
+<p>There are no services configured for this agent.</p>
+
+{% else %}
+
+{% for service in agent.windows_services.all %}
+<div class="check">
+{% with status=service.latest_log.status_pass %}
+
+<div class="summary">
+    <div class="check-name" title="Last reported: {{ service.latest_log.timestamp|date:"Y-m-d H:i:s" }} ({{ service.latest_log.timestamp|naturaltime }})">{{ service.service_name }} service</div>
+
+<div class="check-status {% if status %}good{% else %}bad{% endif %}">{% spaceless %}
+    {% if status %}
+    OK
+    {% else %}
+    FAIL
+    {% endif %}
+{% endspaceless %}</div> <!-- /.check-status -->
+
+</div> <!-- /.summary -->
+
+<div class="detail {% if status %}closed{% else %}open{% endif %}">
+<table class="history">
+    <thead>
+        <tr>
+            <th>Timestamp</th>
+            <th>Expected</th>
+            <th>Actual</th>
+            <th>Action</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for log in service.latest_log_entries %}
+        <tr>
+            <td><abbr title="{{ log.timestamp|naturaltime }}">{{ log.timestamp|date:"Y-m-d H:i:s" }}</abbr></td>
+            <td>{{ log.expected_status_h }}</td>
+            <td>{{ log.actual_status_h }}</td>
+            <td>{{ log.action_taken }}</td>
+            {% if log.status_pass %}
+            <td class="center good">OK</td>
+            {% else %}
+            <td class="center bad">FAIL</td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+        <tr class="links">
+            <td colspan="3"><a href="#">View more history ({{ service.latest_log_entries|length }} entries)</a></td>
+            <td colspan="2" class="right"><a href="#" class="click-collapse">Collapse</a></td>
+        </tr>
+    </tbody>
+</table>
+</div> <!-- /.detail -->
+
+{% endwith %}
+</div> <!-- /.check -->
+
 {% endfor %}
+
+{% endif %}
+
+{% endfor %}
+
+</div> <!-- /#dashboard -->
 
 {% endblock %}
