@@ -98,7 +98,7 @@
         </tr>
         {% endfor %}
         <tr class="links">
-            <td colspan="3"><a href="#">View more history ({{ service.latest_log_entries|length }} entries)</a></td>
+            <td colspan="3"><a href="#">View more history ({{ service.log.count }} entries)</a></td>
             <td colspan="2" class="right"><a href="#" class="click-collapse">Collapse</a></td>
         </tr>
     </tbody>
