@@ -101,6 +101,7 @@ INSTALLED_APPS = (
     'south',
     'tastypie',
     'manager',
+    'dashboard',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'

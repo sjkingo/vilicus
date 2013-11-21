@@ -9,5 +9,5 @@ urlpatterns = patterns('',
     (r'^grappelli/', include('grappelli.urls')),
     (r'^admin/', include(admin.site.urls)),
     (r'^api/', include(v1_api.urls)),
-    (r'^', include('manager.urls')),
+    (r'^', include('dashboard.urls')),
 )
