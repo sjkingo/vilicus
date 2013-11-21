@@ -25,6 +25,7 @@ SERVICE_STATUS_STATES = (
     ('PAUSED', 'Paused'),
     ('CONTINUE_PENDING', 'Continue pending'),
     ('NOT_INSTALLED', 'Not installed'),
+    ('UNKNOWN', 'Unknown'),
 )
 
 class WindowsService(models.Model):
@@ -51,6 +52,7 @@ class WindowsService(models.Model):
 class WindowsServiceLog(models.Model):
     service = models.ForeignKey('WindowsService', related_name='log')
     timestamp = models.DateTimeField()
+    expected_status = models.CharField(max_length=16)
     actual_status = models.CharField(max_length=16)
     action_taken = models.CharField(max_length=50)
     comments = models.TextField(blank=True, null=True)
@@ -66,4 +68,4 @@ class WindowsServiceLog(models.Model):
 
     @property
     def status_pass(self):
-        return self.actual_status == self.service.expected_status
+        return self.actual_status == self.expected_status
