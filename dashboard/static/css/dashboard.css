@@ -15,7 +15,8 @@ div.summary {
     overflow: auto;
     cursor: pointer;
 }
-div.summary:hover {
+div.summary:hover,
+div.selected {
     background-color: #F8F8F8;
 }
 
