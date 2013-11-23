@@ -1,3 +1,4 @@
+import datetime
 from django.db import models
 
 class Agent(models.Model):
@@ -14,6 +15,36 @@ class Agent(models.Model):
 
     def __unicode__(self):
         return self.hostname
+
+    @property
+    def perflog_last_24hrs(self):
+        then = datetime.datetime.now() - datetime.timedelta(days=1)
+        return self.perflogs.filter(timestamp__gte=then)
+
+    @property
+    def perflog_id(self):
+        return 'perflog_%d' % self.id
+
+    @property
+    def perflog_dataset(self):
+        dataset = sorted([(entry.timestamp.strftime('%H:%M:%S'), entry.cpu_usage) 
+                        for entry in self.perflog_last_24hrs], key=lambda x: x[0])
+        labels = []
+        keys = [v[0] for v in dataset]
+        interval = int(len(keys) / PerformanceLogEntry.MAJOR_TICK_INTERVAL)
+        if interval == 0:
+            # not enough data
+            return None
+        for i, k in enumerate(keys):
+            if i % interval == 0:
+                labels.append(dataset[i][0][:-3])
+            else:
+                labels.append('')
+
+        return {
+            'xaxis': labels,
+            'dataset': [x[1] for x in dataset]
+        }
 
 # From http://msdn.microsoft.com/en-us/library/windows/desktop/ee126211(v=vs.85).aspx
 SERVICE_STATUS_STATES = (
@@ -82,3 +113,22 @@ class WindowsServiceLog(models.Model):
     @property
     def actual_status_h(self):
         return SERVICE_STATUS_DICT[self.actual_status]
+
+class PerformanceLogEntry(models.Model):
+    agent = models.ForeignKey('Agent', related_name='perflogs')
+    timestamp = models.DateTimeField()
+    cpu_usage = models.IntegerField()
+
+    MAJOR_TICK_INTERVAL = 6
+
+    class Meta:
+        verbose_name = 'Performance log entry'
+        verbose_name_plural = 'Performance log entries'
+        ordering = ('agent', '-timestamp')
+
+    def __unicode__(self):
+        return '{agent} at {timestamp}'.format(agent=str(self.agent), timestamp=self.timestamp)
+
+    @property
+    def hourmins(self):
+        return self.timestamp.strftime('H:M')

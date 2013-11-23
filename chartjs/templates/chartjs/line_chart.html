@@ -1,0 +1,31 @@
+<p class="title">CPU performance past 24 hours:</p>
+<canvas id="{{ canvas_id }}" width="{{ canvas_width }}" height="{{ canvas_height }}" class="chartjs"></canvas>
+<script>
+    $(document).ready(function() {
+        var context = document.getElementById("{{ canvas_id }}").getContext("2d");
+        var data = {
+            labels : {{ labels }},
+            datasets : [
+                {
+                    fillColor : "rgba(151,187,205,0.5)",
+                    strokeColor : "rgba(151,187,205,1)",
+                    pointColor : "rgba(151,187,205,1)",
+                    pointStrokeColor : "#fff",
+                    data : {{ dataset }}
+                }
+            ]
+        }
+        var options = {
+            pointDot: false,
+            animation: false,
+
+            scaleOverride : true,
+            scaleSteps : 2,
+            scaleStepWidth : 50,
+            scaleStartValue : 0,
+            scaleFontSize: 10,
+            scaleLabel : "<%=value%>%",
+        }
+        var chart = new Chart(context).Line(data, options);
+    });
+</script>

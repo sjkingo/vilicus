@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load staticfiles humanize %}
+{% load staticfiles humanize chartjs %}
 
 {% block title %}Dashboard{% endblock %}
 
@@ -13,6 +13,7 @@
 
 {% block extra_js %}
 <script src="{% static "js/dashboard.js" %}"></script>
+{% include "chartjs/chartjs_scripts.html" %}
 {% endblock %}
 
 {% block main %}
@@ -36,18 +37,11 @@
     </tr>
 </table>
 
-{% comment %}
-<div class="title">
-    <span><h2>{{ agent }}</h2></span>
-    <span class="byline">{% spaceless %}
-    {% if agent.last_checkin %}
-    Last checkin {{ agent.last_checkin|naturaltime }}
-    {% else %}
-    Never checked in
-    {% endif %}
-    {% endspaceless %}</span>
-</div>
-{% endcomment %}
+{% if agent.perflog_dataset.xaxis|length %}
+{% line_chart agent.perflog_id chart_config=agent.perflog_dataset width=700 height=100 %}
+{% else %}
+<p>No performance data has been collected for this agent.</p>
+{% endif %}
 
 {% if agent.windows_services.count == 0 %}
 

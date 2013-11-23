@@ -50,3 +50,18 @@ class WindowsServiceLogResource(ModelResource):
         serializer = Serializer()
 
 v1_api.register(WindowsServiceLogResource())
+
+class PerformanceLogEntryResource(ModelResource):
+    agent = fields.ForeignKey(AgentResource, 'agent')
+
+    class Meta:
+        queryset = PerformanceLogEntry.objects.all()
+        filtering = {
+            'agent': ALL_WITH_RELATIONS,
+        }
+
+        allowed_methods = ['post']
+        authorization = Authorization()
+        serializer = Serializer()
+
+v1_api.register(PerformanceLogEntryResource())

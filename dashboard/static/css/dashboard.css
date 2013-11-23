@@ -78,3 +78,13 @@ table.agent_title td.byline {
 table.agent_title td {
     vertical-align: baseline;
 }
+
+p.title {
+    text-align: center;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+canvas.chartjs {
+    margin-bottom: 1em;
+}

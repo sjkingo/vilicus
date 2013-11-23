@@ -101,6 +101,7 @@ INSTALLED_APPS = (
     'debug_toolbar',
     'south',
     'tastypie',
+    'chartjs',
     'manager',
     'dashboard',
 )

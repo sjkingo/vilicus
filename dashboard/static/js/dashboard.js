@@ -1,3 +1,5 @@
+$(document).ready(function() {
+
 $('div.summary').click(function() {
     $(this).next().slideToggle();
     $(this).toggleClass('selected');
@@ -5,4 +7,6 @@ $('div.summary').click(function() {
 
 $('a.click-collapse').click(function() {
     $(this).parents('div.detail').slideToggle();
+});
+
 });
