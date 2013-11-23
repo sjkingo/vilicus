@@ -75,7 +75,7 @@ class WindowsService(models.Model):
     class Meta:
         verbose_name = 'Windows Service'
         verbose_name_plural = verbose_name + 's'
-        ordering = ('agent', 'service_name')
+        ordering = ('agent', 'description', 'service_name')
 
     def __unicode__(self):
         if self.description == self.service_name:
