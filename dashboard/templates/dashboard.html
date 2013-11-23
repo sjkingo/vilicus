@@ -18,11 +18,11 @@
 
 {% block main %}
 
-<h1>Dashboard</h1>
-
 <div id="dashboard">
 
 {% for agent in agents %}
+
+<div class="agent_wrapper">
 
 <table class="agent_title">
     <tr>
@@ -106,7 +106,9 @@
 
 {% endif %}
 
-{% endfor %}
+</div>
+
+{% endfor %} <!-- /for agents -->
 
 </div> <!-- /#dashboard -->
 
