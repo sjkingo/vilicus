@@ -62,6 +62,7 @@ SERVICE_STATUS_DICT = dict(SERVICE_STATUS_STATES)
 
 class WindowsService(models.Model):
     agent = models.ForeignKey('Agent', related_name='windows_services')
+    description = models.CharField(max_length=100)
     service_name = models.CharField(max_length=100)
     expected_status = models.CharField(max_length=16, 
             choices=SERVICE_STATUS_STATES, default='RUNNING')
@@ -72,7 +73,10 @@ class WindowsService(models.Model):
         ordering = ('agent', 'service_name')
 
     def __unicode__(self):
-        return '{self.service_name} on {self.agent}'.format(self=self)
+        if self.description == self.service_name:
+            return self.description
+        else:
+            return '{self.description} ({self.service_name})'.format(self=self)
 
     @property
     def latest_log_entries(self):
@@ -119,6 +123,7 @@ class PerformanceLogEntry(models.Model):
     timestamp = models.DateTimeField()
     cpu_usage = models.IntegerField()
 
+    # Interval for x-axis in charts. Note there must be this many entries before the graph will appear.
     MAJOR_TICK_INTERVAL = 6
 
     class Meta:

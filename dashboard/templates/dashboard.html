@@ -54,7 +54,7 @@
 {% with status=service.latest_log.status_pass %}
 
 <div class="summary{% if not status %} selected{% endif %}">
-    <div class="check-name" title="Last reported: {{ service.latest_log.timestamp|date:"Y-m-d H:i:s" }} ({{ service.latest_log.timestamp|naturaltime }})">{{ service.service_name }} service</div>
+    <div class="check-name" title="Last reported: {{ service.latest_log.timestamp|date:"Y-m-d H:i:s" }} ({{ service.latest_log.timestamp|naturaltime }})">{{ service }} service</div>
 
 <div class="check-status {% if status %}good{% else %}bad{% endif %}">{% spaceless %}
     {% if status %}
