@@ -26,7 +26,7 @@
 
 <table class="agent_title">
     <tr>
-        <td><h2>{{ agent }}</h2></td>
+        <td><h2><abbr title="Agent version {{ agent.version }}, guid {{ agent.guid }}">{{ agent }}</abbr></h2></td>
         <td class="byline">
             {% if agent.last_checkin %}
             Last checkin {{ agent.last_checkin|naturaltime }}
