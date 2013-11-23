@@ -17,6 +17,10 @@ class Agent(models.Model):
         return self.hostname
 
     @property
+    def windows_services_shown(self):
+        return self.windows_services.filter(hidden=False)
+
+    @property
     def perflog_last_24hrs(self):
         then = datetime.datetime.now() - datetime.timedelta(days=1)
         return self.perflogs.filter(timestamp__gte=then)
@@ -66,6 +70,7 @@ class WindowsService(models.Model):
     service_name = models.CharField(max_length=100)
     expected_status = models.CharField(max_length=16, 
             choices=SERVICE_STATUS_STATES, default='RUNNING')
+    hidden = models.BooleanField()
 
     class Meta:
         verbose_name = 'Windows Service'

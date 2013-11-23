@@ -43,13 +43,13 @@
 <p>No performance data has been collected for this agent, or there is not enough data to display.</p>
 {% endif %}
 
-{% if agent.windows_services.count == 0 %}
+{% if agent.windows_services_shown.count == 0 %}
 
 <p>There are no services configured for this agent.</p>
 
 {% else %}
 
-{% for service in agent.windows_services.all %}
+{% for service in agent.windows_services_shown %}
 <div class="check">
 {% with status=service.latest_log.status_pass %}
 
