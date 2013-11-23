@@ -38,6 +38,7 @@
 </table>
 
 {% if agent.perflog_dataset.xaxis|length %}
+<p class="title">CPU usage over the past 24 hours:</p>
 {% line_chart agent.perflog_id chart_config=agent.perflog_dataset width=700 height=100 %}
 {% else %}
 <p>No performance data has been collected for this agent, or there is not enough data to display.</p>
