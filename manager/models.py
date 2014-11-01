@@ -70,7 +70,7 @@ class WindowsService(models.Model):
     service_name = models.CharField(max_length=100)
     expected_status = models.CharField(max_length=16, 
             choices=SERVICE_STATUS_STATES, default='RUNNING')
-    hidden = models.BooleanField()
+    hidden = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = 'Windows Service'

@@ -99,7 +99,6 @@ INSTALLED_APPS = (
     'grappelli',
     'django.contrib.admin',
     'debug_toolbar',
-    'south',
     'tastypie',
     'chartjs',
     'manager',
@@ -166,3 +165,6 @@ except ImportError:
 TEMPLATE_DEBUG = DEBUG
 TASTYPIE_FULL_DEBUG = DEBUG
 MANAGERS = ADMINS
+
+# Silence a unittest warning due to tastypie
+TEST_RUNNER = 'django.test.runner.DiscoverRunner'
