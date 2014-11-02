@@ -94,6 +94,16 @@ class WindowsService(models.Model):
         except IndexError:
             return None
 
+    @property
+    def changed_since_last(self):
+        try:
+            if self.latest_log_entries[0].actual_status != \
+                    self.latest_log_entries[1].actual_status:
+                return True
+        except IndexError:
+            return True
+        return False
+
 class WindowsServiceLog(models.Model):
     service = models.ForeignKey('WindowsService', related_name='log')
     timestamp = models.DateTimeField()

@@ -103,6 +103,7 @@ INSTALLED_APPS = (
     'chartjs',
     'manager',
     'dashboard',
+    'notify_pushover',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
