@@ -9,6 +9,8 @@ sustained above a threshold.
 It can be compared to bigger tools such as Nagios and NetXMS, but on a far
 smaller scale. 
 
+It supports Android push notifications via the Pushover service.
+
 Terminology
 -----------
 
