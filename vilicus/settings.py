@@ -159,7 +159,7 @@ TASTYPIE_DEFAULT_FORMATS = ['json']
 
 # Try and import the local_settings
 try:
-    from local_settings import *
+    from .local_settings import *
 except ImportError:
     pass
 

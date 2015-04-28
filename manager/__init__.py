@@ -1,1 +1,1 @@
-import signals
+import manager.signals

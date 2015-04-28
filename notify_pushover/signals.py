@@ -2,7 +2,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 from manager.models import WindowsServiceLog
-from send import *
+from .send import *
 
 class LastStatusDummy(object):
     actual_status = '(None)'

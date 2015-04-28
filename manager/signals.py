@@ -2,7 +2,7 @@ import datetime
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-from manager.models import WindowsServiceLog
+from .models import WindowsServiceLog
 
 @receiver(post_save, sender=WindowsServiceLog)
 def update_last_checkin(sender, **kwargs):

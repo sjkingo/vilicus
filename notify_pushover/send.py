@@ -2,7 +2,7 @@ import pushover
 from . import TOKEN_KEY
 pushover.init(TOKEN_KEY)
 
-from models import PushoverUserTokens
+from .models import PushoverUserTokens
 
 # from https://pushover.net/api#priority
 PRIORITY = {

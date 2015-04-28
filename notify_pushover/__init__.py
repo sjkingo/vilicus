@@ -6,4 +6,4 @@ if not hasattr(settings, _token_key):
     raise ImproperlyConfigured(_token_key + ' is missing but is required for the notify_pushover app')
 TOKEN_KEY = getattr(settings, _token_key)
 
-import signals
+import notify_pushover.signals
