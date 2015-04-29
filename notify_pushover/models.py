@@ -6,6 +6,7 @@ class PushoverUserTokens(models.Model):
     description = models.TextField(blank=True)
 
     class Meta:
+        app_label = 'notify_pushover'
         verbose_name = 'Pushover user token'
         verbose_name_plural = verbose_name + 's'
 

@@ -9,6 +9,7 @@ class Agent(models.Model):
     guid = models.CharField(max_length=40, blank=True, null=True)
 
     class Meta:
+        app_label = 'manager'
         verbose_name = 'Agent'
         verbose_name_plural = verbose_name + 's'
         ordering = ('hostname',)
@@ -73,6 +74,7 @@ class WindowsService(models.Model):
     hidden = models.BooleanField(default=False)
 
     class Meta:
+        app_label = 'manager'
         verbose_name = 'Windows Service'
         verbose_name_plural = verbose_name + 's'
         ordering = ('agent', 'description', 'service_name')
@@ -113,6 +115,7 @@ class WindowsServiceLog(models.Model):
     comments = models.TextField(blank=True, null=True)
 
     class Meta:
+        app_label = 'manager'
         verbose_name = 'Windows Service log'
         verbose_name_plural = verbose_name + 's'
         ordering = ('service', '-timestamp')
@@ -142,6 +145,7 @@ class PerformanceLogEntry(models.Model):
     MAJOR_TICK_INTERVAL = 6
 
     class Meta:
+        app_label = 'manager'
         verbose_name = 'Performance log entry'
         verbose_name_plural = 'Performance log entries'
         ordering = ('agent', '-timestamp')
