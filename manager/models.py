@@ -14,7 +14,7 @@ class Agent(models.Model):
         verbose_name_plural = verbose_name + 's'
         ordering = ('hostname',)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.hostname
 
     @property
@@ -80,7 +80,7 @@ class WindowsService(models.Model):
         verbose_name_plural = verbose_name + 's'
         ordering = ('agent', 'description', 'service_name')
 
-    def __unicode__(self):
+    def __str__(self):
         if self.description == self.service_name:
             return self.description
         else:
@@ -121,7 +121,7 @@ class WindowsServiceLog(models.Model):
         verbose_name_plural = verbose_name + 's'
         ordering = ('service', '-timestamp')
 
-    def __unicode__(self):
+    def __str__(self):
         return '{service} at {timestamp}'.format(service=str(self.service), 
                 timestamp=self.timestamp)
 
@@ -151,7 +151,7 @@ class PerformanceLogEntry(models.Model):
         verbose_name_plural = 'Performance log entries'
         ordering = ('agent', '-timestamp')
 
-    def __unicode__(self):
+    def __str__(self):
         return '{agent} at {timestamp}'.format(agent=str(self.agent), timestamp=self.timestamp)
 
     @property

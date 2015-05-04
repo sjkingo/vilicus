@@ -10,6 +10,6 @@ class PushoverUserTokens(models.Model):
         verbose_name = 'Pushover user token'
         verbose_name_plural = verbose_name + 's'
 
-    def __unicode__(self):
+    def __str__(self):
         return self.email + ': ' + self.token
 
