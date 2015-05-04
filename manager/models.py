@@ -72,6 +72,7 @@ class WindowsService(models.Model):
     expected_status = models.CharField(max_length=16, 
             choices=SERVICE_STATUS_STATES, default='RUNNING')
     hidden = models.BooleanField(default=False)
+    restart_if_stopped = models.BooleanField(default=False)
 
     class Meta:
         app_label = 'manager'
