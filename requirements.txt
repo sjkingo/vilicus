@@ -2,7 +2,7 @@ Django==1.9.2
 defusedxml==0.4.1
 django-debug-toolbar==1.4
 django-grappelli==2.7.3
-django-tastypie==0.13.2
+django-tastypie==0.13.3
 lxml==3.5.0
 mimeparse==0.1.4
 psycopg2==2.6.1
