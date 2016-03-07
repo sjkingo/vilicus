@@ -1,7 +1,7 @@
 Django==1.9.4
 defusedxml==0.4.1
 django-debug-toolbar==1.4
-django-grappelli==2.7.3
+django-grappelli==2.8.1
 django-tastypie==0.13.3
 lxml==3.5.0
 mimeparse==0.1.4
