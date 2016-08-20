@@ -3,7 +3,7 @@ defusedxml==0.4.1
 django-debug-toolbar==1.5
 django-grappelli==2.8.1
 django-tastypie==0.13.3
-lxml==3.6.3
+lxml==3.6.4
 mimeparse==0.1.4
 psycopg2==2.6.2
 python-dateutil==2.5.3
