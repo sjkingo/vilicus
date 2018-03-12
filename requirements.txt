@@ -6,7 +6,7 @@ django-tastypie==0.14.0
 lxml==4.1.1
 mimeparse==0.1.4
 psycopg2==2.7.4
-python-dateutil==2.6.1
+python-dateutil==2.7.0
 python-mimeparse==1.6.0
 six==1.11.0
 sqlparse==0.2.4
