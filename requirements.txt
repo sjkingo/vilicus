@@ -5,7 +5,7 @@ django-grappelli==2.12.1
 django-tastypie==0.14.2
 lxml==4.2.5
 mimeparse==0.1.4
-psycopg2==2.7.5
+psycopg2==2.7.6
 python-dateutil==2.7.5
 python-mimeparse==1.6.0
 six==1.11.0
