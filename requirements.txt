@@ -1,4 +1,4 @@
-Django==2.2.7
+Django==2.2.8
 defusedxml==0.6.0
 django-debug-toolbar==2.1
 django-grappelli==2.13.2
