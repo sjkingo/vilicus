@@ -8,6 +8,6 @@ mimeparse==0.1.4
 psycopg2==2.8.5
 python-dateutil==2.8.1
 python-mimeparse==1.6.0
-six==1.14.0
+six==1.15.0
 sqlparse==0.3.1
 wsgiref==0.1.2
