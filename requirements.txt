@@ -1,6 +1,6 @@
 Django==3.2.6
 defusedxml==0.7.1
-django-debug-toolbar==3.2.1
+django-debug-toolbar==3.2.2
 django-grappelli==2.15.1
 django-tastypie==0.14.3
 lxml==4.6.3
